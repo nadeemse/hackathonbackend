@@ -1,0 +1,66 @@
+{
+  "connection": "default",
+  "collectionName": "ingredient",
+  "info": {
+    "name": "ingredient",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "Code": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "Icon": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "buyingUnit": {
+      "model": "unit"
+    },
+    "recipes": {
+      "collection": "recipe",
+      "via": "ingredients"
+    },
+    "Price": {
+      "type": "float",
+      "required": true,
+      "default": "0"
+    },
+    "Calories": {
+      "type": "decimal",
+      "required": true,
+      "default": "0"
+    },
+    "consumptionUnit": {
+      "model": "unit"
+    },
+    "wasteValue": {
+      "type": "float",
+      "max": 100,
+      "required": true,
+      "default": "0"
+    },
+    "fat": {
+      "type": "decimal",
+      "default": "0"
+    },
+    "carbs": {
+      "type": "decimal",
+      "default": "0"
+    },
+    "ingredientcategory": {
+      "model": "ingredientcategory",
+      "via": "ingredients"
+    }
+  }
+}

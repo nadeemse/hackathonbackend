@@ -1,0 +1,114 @@
+{
+  "connection": "default",
+  "collectionName": "recipe",
+  "info": {
+    "name": "recipe",
+    "description": "recipe bank"
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "cookingtime": {
+      "type": "string"
+    },
+    "preptime": {
+      "type": "string"
+    },
+    "serves": {
+      "type": "string"
+    },
+    "class": {
+      "type": "string"
+    },
+    "keywords": {
+      "type": "text"
+    },
+    "chef": {
+      "model": "chef",
+      "via": "myrecipes"
+    },
+    "ingredients": {
+      "collection": "ingredient",
+      "via": "recipes",
+      "dominant": true
+    },
+    "cusine": {
+      "type": "text"
+    },
+    "post_dates": {
+      "type": "date"
+    },
+    "recipeimage": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "Price": {
+      "type": "decimal"
+    },
+    "description": {
+      "type": "text"
+    },
+    "recipecategories": {
+      "collection": "recipecategory",
+      "via": "recipes"
+    },
+    "menus": {
+      "collection": "menu",
+      "via": "recipes"
+    },
+    "status": {
+      "required": true,
+      "enum": [
+        "Draft",
+        "Active",
+        "inActive",
+        "inProduction"
+      ],
+      "default": "Draft",
+      "type": "enumeration"
+    },
+    "preparationsteps": {
+      "type": "text"
+    },
+    "presentationsteps": {
+      "type": "text"
+    },
+    "ingredientlist": {
+      "type": "json",
+      "required": true
+    },
+    "likedbychefs": {
+      "collection": "chef",
+      "via": "recipes",
+      "dominant": true
+    },
+    "likescount": {
+      "type": "integer",
+      "default": "0"
+    },
+    "sharescount": {
+      "type": "integer",
+      "default": "0"
+    },
+    "recipecomments": {
+      "collection": "recipecomments",
+      "via": "recipe"
+    },
+    "commentscount": {
+      "type": "integer",
+      "default": "0"
+    },
+    "sharerecipes": {
+      "collection": "sharerecipe",
+      "via": "recipe"
+    }
+  }
+}

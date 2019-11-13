@@ -1,0 +1,238 @@
+use strict';
+
+/**
+ * Recipe.js controller
+ *
+ * @description: A set of functions called "actions" for managing `Recipe`.
+ */
+const neo4j = require('neo4j-driver').v1;
+const driver = neo4j.driver('bolt://127.0.0.1:7687', neo4j.auth.basic('neo4j', 'cloudkitchen'));
+const session = driver.session();
+
+module.exports = {
+
+exporttoneo4jdb: async () => {
+
+        console.log('exporttoneo4jdb begins11');
+
+        Recipe
+            .find({})
+            .populate('ingredients', 'title').populate('chef', 'name').populate('likedbychefs')
+            .exec(function (err, recipes) {
+                if (err) console.log('err ' + err);
+                //this will log all of the users with each of their posts 
+                else {
+                     console.log('exporttoneo4jdb all recipes' + recipes);
+                    session
+                        .run(
+                            ' match (n:Recipe) DETACH DELETE n',
+                            {}
+                        )
+                        .then(result => {
+                            //session.close();
+                            result.records.map(record => {
+                                console.log(' data cleaned' + record);
+                            });
+                        })
+                        .catch(error => {
+                            console.log(error);
+                            session.close();
+                            throw error;
+                        });
+
+                    // delete Recipe nodes
+                    // match (n:Recipe) DETACH DELETE n
+                    // match (n:Chef) DETACH DELETE n
+                    recipes.forEach(function (item, index) {
+                        console.log(item);
+
+                        var reipeid = item._id;
+                        var recipename = item.title;
+                        var recipeauthorname = item.chef.name;
+                        var likes = item.likedbychefs;
+
+
+
+                        session
+                            .run(
+                                'CREATE (r:Recipe {title: $title}) RETURN r',
+                                {
+                                    title: recipename,
+                                    id: reipeid
+                                }
+                            )
+                            .then(result => {
+                                //session.close();
+                                result.records.map(record => {
+                                    console.log('recipe cretaed ' + recipename);
+                                });
+                            })
+                            .catch(error => {
+                                console.log(error);
+                                session.close();
+                                throw error;
+                            });
+
+
+                        session
+                            .run(
+                                ' MATCH (c:Chef) , (r:Recipe) WHERE c.name = $name AND r.title = $title CREATE (c)-[r1:CREATED_BY]->(r) RETURN r1',
+                                {
+                                    name: recipeauthorname,
+                                    title: recipename
+                                }
+                            )
+                            .then(result => {
+                                //session.close();
+                                result.records.map(record => {
+                                    console.log(' creted by mapping cretaed' + record);
+                                });
+                            })
+                            .catch(error => {
+                                console.log(error);
+                                session.close();
+                                throw error;
+                            });
+
+                        likes.forEach(element => {
+                            var chefid = element;
+                            console.log('chefid' + chefid);
+
+                            Chef.find({ _id: chefid }).exec((err, populatedchef) => {
+                                var likedbychefname = populatedchef[0].name;
+                                session
+                                    .run(
+                                        ' MATCH (c:Chef) , (r:Recipe) WHERE c.name = $name AND r.title = $title CREATE (c)-[r1:LIKED]->(r) RETURN r1',
+                                        {
+                                            name: likedbychefname,
+                                            title: recipename
+                                        }
+                                    )
+                                    .then(result => {
+                                        result.records.map(record => {
+                                            console.log('liked mapping cretaed' + record);
+                                        });
+                                    })
+                                    .catch(error => {
+                                        console.log(error);
+                                        session.close();
+                                        throw error;
+                                    });
+
+                            });
+
+
+
+
+                        });
+                        var list = item.ingredients;
+                        list.forEach(element => {
+                            var ingredientname = element.name
+                        });
+                    });
+                }
+            })
+    },
+    getMostLikedRecipes: async ctx => {
+        return session
+            .run(' MATCH (c:Chef)-[:LIKED]->(r:Recipe) WITH r.title as recipename, count(*) as likecount return recipename, likecount order by likecount DESC',
+                {}
+            )
+            .then(result => {
+                ctx.status = 200;
+                ctx.response.body = result.records;
+            })
+            .catch(error => {
+                console.log(error);
+                session.close();
+                throw error;
+            });
+    },
+
+  /**
+   * Retrieve recipe records.
+   *
+   * @return {Object|Array}
+   */
+
+  find: async (ctx, next, { populate } = {}) => {
+    if (ctx.query._q) {
+      return strapi.services.recipe.search(ctx.query);
+    } else {
+      return strapi.services.recipe.fetchAll(ctx.query, populate);
+    }
+  },
+
+  /**
+   * Retrieve a recipe record.
+   *
+   * @return {Object}
+   */
+
+  findOne: async (ctx) => {
+    if (!ctx.params._id.match(/^[0-9a-fA-F]{24}$/)) {
+      return ctx.notFound();
+    }
+
+    return strapi.services.recipe.fetch(ctx.params);
+  },
+
+  /**
+   * Count recipe records.
+   *
+   * @return {Number}
+   */
+
+  count: async (ctx) => {
+    return strapi.services.recipe.count(ctx.query);
+  },
+
+	like: async (ctx, next) => {
+        let recipe = await Recipe.find({_id: ctx.params._id});
+        const likedbychefs = recipe.likedbychefs;
+        const isExist = likedbychefs.filter(r => r === ctx.request.body.chefId);
+        ctx.status = 200;
+        if (isExist.length > 0) {
+            const index = likedbychefs.indexOf(isExist[0]);
+            ctx.status = 422;
+            recipe.likescount -= 1;
+            likedbychefs.splice(index, 1);
+        } else {
+            recipe.likescount += 1;
+            likedbychefs.push(ctx.request.body.chefId);
+            ctx.message = 'You liked recipe: ' + recipe.title;
+        }
+        recipe.likedbychefs = likedbychefs;
+        return strapi.services.recipe.edit(ctx.params, recipe);
+    },
+
+  /**
+   * Create a/an recipe record.
+   *
+   * @return {Object}
+   */
+
+  create: async (ctx) => {
+    return strapi.services.recipe.add(ctx.request.body);
+  },
+
+  /**
+   * Update a/an recipe record.
+   *
+   * @return {Object}
+   */
+
+  update: async (ctx, next) => {
+    return strapi.services.recipe.edit(ctx.params, ctx.request.body) ;
+  },
+
+  /**
+   * Destroy a/an recipe record.
+   *
+   * @return {Object}
+   */
+
+  destroy: async (ctx, next) => {
+    return strapi.services.recipe.remove(ctx.params);
+  }
+};

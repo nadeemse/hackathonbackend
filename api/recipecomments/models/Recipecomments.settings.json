@@ -1,0 +1,28 @@
+{
+  "connection": "default",
+  "collectionName": "recipecomments",
+  "info": {
+    "name": "recipecomments",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "recipe": {
+      "model": "recipe",
+      "via": "recipecomments"
+    },
+    "commentedby": {
+      "model": "chef",
+      "via": "recipecomments"
+    },
+    "comment": {
+      "type": "string",
+      "required": true
+    },
+    "postdttm": {
+      "type": "date"
+    }
+  }
+}

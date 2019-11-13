@@ -1,0 +1,28 @@
+{
+  "connection": "default",
+  "collectionName": "ingredientcategory",
+  "info": {
+    "name": "ingredientcategory",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "ingredients": {
+      "collection": "ingredient",
+      "via": "ingredientcategory"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    }
+  }
+}

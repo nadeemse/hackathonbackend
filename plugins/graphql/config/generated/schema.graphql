@@ -1,0 +1,1871 @@
+type Chef {
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  email: String
+  bio: String
+  chefpicture: UploadFile
+  country: String
+  city: String
+  user: UsersPermissionsUser
+  contactnumber: String
+  myrecipes(sort: String, limit: Int, start: Int, where: JSON): [Recipe]
+  recipes(sort: String, limit: Int, start: Int, where: JSON): [Recipe]
+  recipecomments(sort: String, limit: Int, start: Int, where: JSON): [Recipecomments]
+  sharedbyrecipes(sort: String, limit: Int, start: Int, where: JSON): [Sharerecipe]
+  sharedwithrecipes(sort: String, limit: Int, start: Int, where: JSON): [Sharerecipe]
+}
+
+type ChefAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ChefConnection {
+  values: [Chef]
+  groupBy: ChefGroupBy
+  aggregate: ChefAggregator
+}
+
+type ChefConnection_id {
+  key: ID
+  connection: ChefConnection
+}
+
+type ChefConnectionBio {
+  key: String
+  connection: ChefConnection
+}
+
+type ChefConnectionChefpicture {
+  key: ID
+  connection: ChefConnection
+}
+
+type ChefConnectionCity {
+  key: String
+  connection: ChefConnection
+}
+
+type ChefConnectionContactnumber {
+  key: String
+  connection: ChefConnection
+}
+
+type ChefConnectionCountry {
+  key: String
+  connection: ChefConnection
+}
+
+type ChefConnectionCreatedAt {
+  key: DateTime
+  connection: ChefConnection
+}
+
+type ChefConnectionEmail {
+  key: String
+  connection: ChefConnection
+}
+
+type ChefConnectionId {
+  key: ID
+  connection: ChefConnection
+}
+
+type ChefConnectionName {
+  key: String
+  connection: ChefConnection
+}
+
+type ChefConnectionUpdatedAt {
+  key: DateTime
+  connection: ChefConnection
+}
+
+type ChefConnectionUser {
+  key: ID
+  connection: ChefConnection
+}
+
+type ChefGroupBy {
+  _id: [ChefConnection_id]
+  id: [ChefConnectionId]
+  createdAt: [ChefConnectionCreatedAt]
+  updatedAt: [ChefConnectionUpdatedAt]
+  name: [ChefConnectionName]
+  email: [ChefConnectionEmail]
+  bio: [ChefConnectionBio]
+  chefpicture: [ChefConnectionChefpicture]
+  country: [ChefConnectionCountry]
+  city: [ChefConnectionCity]
+  user: [ChefConnectionUser]
+  contactnumber: [ChefConnectionContactnumber]
+}
+
+input ChefInput {
+  name: String
+  email: String
+  bio: String
+  chefpicture: ID
+  country: String
+  city: String
+  user: ID
+  myrecipes: [ID]
+  contactnumber: String
+  recipes: [ID]
+  recipecomments: [ID]
+  sharedbyrecipes: [ID]
+  sharedwithrecipes: [ID]
+}
+
+input createChefInput {
+  data: ChefInput
+}
+
+type createChefPayload {
+  chef: Chef
+}
+
+input createIngredientcategoryInput {
+  data: IngredientcategoryInput
+}
+
+type createIngredientcategoryPayload {
+  ingredientcategory: Ingredientcategory
+}
+
+input createIngredientInput {
+  data: IngredientInput
+}
+
+type createIngredientPayload {
+  ingredient: Ingredient
+}
+
+input createMenuInput {
+  data: MenuInput
+}
+
+type createMenuPayload {
+  menu: Menu
+}
+
+input createRecipecategoryInput {
+  data: RecipecategoryInput
+}
+
+type createRecipecategoryPayload {
+  recipecategory: Recipecategory
+}
+
+input createRecipecommentsInput {
+  data: RecipecommentsInput
+}
+
+type createRecipecommentsPayload {
+  recipecomment: Recipecomments
+}
+
+input createRecipeInput {
+  data: RecipeInput
+}
+
+type createRecipePayload {
+  recipe: Recipe
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+
+input createSharerecipeInput {
+  data: SharerecipeInput
+}
+
+type createSharerecipePayload {
+  sharerecipe: Sharerecipe
+}
+
+input createUnitInput {
+  data: UnitInput
+}
+
+type createUnitPayload {
+  unit: Unit
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+"""
+The `DateTime` scalar represents a date and time following the ISO 8601 standard
+"""
+scalar DateTime
+
+input deleteChefInput {
+  where: InputID
+}
+
+type deleteChefPayload {
+  chef: Chef
+}
+
+input deleteIngredientcategoryInput {
+  where: InputID
+}
+
+type deleteIngredientcategoryPayload {
+  ingredientcategory: Ingredientcategory
+}
+
+input deleteIngredientInput {
+  where: InputID
+}
+
+type deleteIngredientPayload {
+  ingredient: Ingredient
+}
+
+input deleteMenuInput {
+  where: InputID
+}
+
+type deleteMenuPayload {
+  menu: Menu
+}
+
+input deleteRecipecategoryInput {
+  where: InputID
+}
+
+type deleteRecipecategoryPayload {
+  recipecategory: Recipecategory
+}
+
+input deleteRecipecommentsInput {
+  where: InputID
+}
+
+type deleteRecipecommentsPayload {
+  recipecomment: Recipecomments
+}
+
+input deleteRecipeInput {
+  where: InputID
+}
+
+type deleteRecipePayload {
+  recipe: Recipe
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+input deleteSharerecipeInput {
+  where: InputID
+}
+
+type deleteSharerecipePayload {
+  sharerecipe: Sharerecipe
+}
+
+input deleteUnitInput {
+  where: InputID
+}
+
+type deleteUnitPayload {
+  unit: Unit
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+input editChefInput {
+  name: String
+  email: String
+  bio: String
+  chefpicture: ID
+  country: String
+  city: String
+  user: ID
+  myrecipes: [ID]
+  contactnumber: String
+  recipes: [ID]
+  recipecomments: [ID]
+  sharedbyrecipes: [ID]
+  sharedwithrecipes: [ID]
+}
+
+input editFileInput {
+  name: String
+  hash: String
+  sha256: String
+  ext: String
+  mime: String
+  size: String
+  url: String
+  provider: String
+  public_id: String
+  related: [ID]
+}
+
+input editIngredientcategoryInput {
+  title: String
+  description: String
+  ingredients: [ID]
+  image: ID
+}
+
+input editIngredientInput {
+  Title: String
+  Code: String
+  Icon: ID
+  buyingUnit: ID
+  recipes: [ID]
+  Price: Float
+  Calories: Float
+  consumptionUnit: ID
+  wasteValue: Float
+  fat: Float
+  carbs: Float
+  ingredientcategory: ID
+}
+
+input editMenuInput {
+  title: String
+  recipes: [ID]
+  airline: String
+  flightroute: String
+  flightnumber: String
+  recipecategories: [ID]
+  image: ID
+}
+
+input editRecipecategoryInput {
+  title: String
+  recipes: [ID]
+  icon: ID
+  description: String
+  menu: ID
+}
+
+input editRecipecommentsInput {
+  recipe: ID
+  commentedby: ID
+  comment: String
+  postdttm: DateTime
+}
+
+input editRecipeInput {
+  title: String
+  code: String
+  cookingtime: String
+  preptime: String
+  serves: String
+  class: String
+  keywords: String
+  chef: ID
+  ingredients: [ID]
+  cusine: String
+  post_dates: DateTime
+  recipeimage: ID
+  Price: Float
+  description: String
+  recipecategories: [ID]
+  menus: [ID]
+  status: ENUM_RECIPE_STATUS
+  preparationsteps: String
+  presentationsteps: String
+  ingredientlist: JSON
+  likedbychefs: [ID]
+  likescount: Int
+  sharescount: Int
+  recipecomments: [ID]
+  commentscount: Int
+  sharerecipes: [ID]
+}
+
+input editRoleInput {
+  name: String
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+}
+
+input editSharerecipeInput {
+  comment: String
+  sharedby: ID
+  sharedwith: ID
+  shareddttm: DateTime
+  recipe: ID
+}
+
+input editUnitInput {
+  Title: String
+  Abbreviation: String
+  Volume: String
+}
+
+input editUserInput {
+  username: String
+  email: String
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  chef: ID
+  avatar: ID
+}
+
+enum ENUM_RECIPE_STATUS {
+  Draft
+  Active
+  inActive
+  inProduction
+}
+
+input FileInput {
+  name: String!
+  hash: String!
+  sha256: String
+  ext: String
+  mime: String!
+  size: String!
+  url: String!
+  provider: String!
+  public_id: String
+  related: [ID]
+}
+
+type Ingredient {
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  Title: String!
+  Code: String!
+  Icon: UploadFile
+  buyingUnit: Unit
+  Price: Float!
+  Calories: Float!
+  consumptionUnit: Unit
+  wasteValue: Float!
+  fat: Float
+  carbs: Float
+  ingredientcategory: Ingredientcategory
+  recipes(sort: String, limit: Int, start: Int, where: JSON): [Recipe]
+}
+
+type IngredientAggregator {
+  count: Int
+  totalCount: Int
+  sum: IngredientAggregatorSum
+  avg: IngredientAggregatorAvg
+  min: IngredientAggregatorMin
+  max: IngredientAggregatorMax
+}
+
+type IngredientAggregatorAvg {
+  fat: Float
+  carbs: Float
+}
+
+type IngredientAggregatorMax {
+  fat: Float
+  carbs: Float
+}
+
+type IngredientAggregatorMin {
+  fat: Float
+  carbs: Float
+}
+
+type IngredientAggregatorSum {
+  fat: Float
+  carbs: Float
+}
+
+type Ingredientcategory {
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String
+  description: String
+  image: UploadFile
+  ingredients(sort: String, limit: Int, start: Int, where: JSON): [Ingredient]
+}
+
+type IngredientcategoryAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type IngredientcategoryConnection {
+  values: [Ingredientcategory]
+  groupBy: IngredientcategoryGroupBy
+  aggregate: IngredientcategoryAggregator
+}
+
+type IngredientcategoryConnection_id {
+  key: ID
+  connection: IngredientcategoryConnection
+}
+
+type IngredientcategoryConnectionCreatedAt {
+  key: DateTime
+  connection: IngredientcategoryConnection
+}
+
+type IngredientcategoryConnectionDescription {
+  key: String
+  connection: IngredientcategoryConnection
+}
+
+type IngredientcategoryConnectionId {
+  key: ID
+  connection: IngredientcategoryConnection
+}
+
+type IngredientcategoryConnectionImage {
+  key: ID
+  connection: IngredientcategoryConnection
+}
+
+type IngredientcategoryConnectionTitle {
+  key: String
+  connection: IngredientcategoryConnection
+}
+
+type IngredientcategoryConnectionUpdatedAt {
+  key: DateTime
+  connection: IngredientcategoryConnection
+}
+
+type IngredientcategoryGroupBy {
+  _id: [IngredientcategoryConnection_id]
+  id: [IngredientcategoryConnectionId]
+  createdAt: [IngredientcategoryConnectionCreatedAt]
+  updatedAt: [IngredientcategoryConnectionUpdatedAt]
+  title: [IngredientcategoryConnectionTitle]
+  description: [IngredientcategoryConnectionDescription]
+  image: [IngredientcategoryConnectionImage]
+}
+
+input IngredientcategoryInput {
+  title: String
+  description: String
+  ingredients: [ID]
+  image: ID
+}
+
+type IngredientConnection {
+  values: [Ingredient]
+  groupBy: IngredientGroupBy
+  aggregate: IngredientAggregator
+}
+
+type IngredientConnection_id {
+  key: ID
+  connection: IngredientConnection
+}
+
+type IngredientConnectionBuyingUnit {
+  key: ID
+  connection: IngredientConnection
+}
+
+type IngredientConnectionCalories {
+  key: Float
+  connection: IngredientConnection
+}
+
+type IngredientConnectionCarbs {
+  key: Float
+  connection: IngredientConnection
+}
+
+type IngredientConnectionCode {
+  key: String
+  connection: IngredientConnection
+}
+
+type IngredientConnectionConsumptionUnit {
+  key: ID
+  connection: IngredientConnection
+}
+
+type IngredientConnectionCreatedAt {
+  key: DateTime
+  connection: IngredientConnection
+}
+
+type IngredientConnectionFat {
+  key: Float
+  connection: IngredientConnection
+}
+
+type IngredientConnectionIcon {
+  key: ID
+  connection: IngredientConnection
+}
+
+type IngredientConnectionId {
+  key: ID
+  connection: IngredientConnection
+}
+
+type IngredientConnectionIngredientcategory {
+  key: ID
+  connection: IngredientConnection
+}
+
+type IngredientConnectionPrice {
+  key: Float
+  connection: IngredientConnection
+}
+
+type IngredientConnectionTitle {
+  key: String
+  connection: IngredientConnection
+}
+
+type IngredientConnectionUpdatedAt {
+  key: DateTime
+  connection: IngredientConnection
+}
+
+type IngredientConnectionWasteValue {
+  key: Float
+  connection: IngredientConnection
+}
+
+type IngredientGroupBy {
+  _id: [IngredientConnection_id]
+  id: [IngredientConnectionId]
+  createdAt: [IngredientConnectionCreatedAt]
+  updatedAt: [IngredientConnectionUpdatedAt]
+  Title: [IngredientConnectionTitle]
+  Code: [IngredientConnectionCode]
+  Icon: [IngredientConnectionIcon]
+  buyingUnit: [IngredientConnectionBuyingUnit]
+  Price: [IngredientConnectionPrice]
+  Calories: [IngredientConnectionCalories]
+  consumptionUnit: [IngredientConnectionConsumptionUnit]
+  wasteValue: [IngredientConnectionWasteValue]
+  fat: [IngredientConnectionFat]
+  carbs: [IngredientConnectionCarbs]
+  ingredientcategory: [IngredientConnectionIngredientcategory]
+}
+
+input IngredientInput {
+  Title: String!
+  Code: String!
+  Icon: ID
+  buyingUnit: ID
+  recipes: [ID]
+  Price: Float!
+  Calories: Float!
+  consumptionUnit: ID
+  wasteValue: Float!
+  fat: Float
+  carbs: Float
+  ingredientcategory: ID
+}
+
+input InputID {
+  id: ID!
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""The `Long` scalar type represents 52-bit integers"""
+scalar Long
+
+type Menu {
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String!
+  airline: String!
+  flightroute: String
+  flightnumber: String
+  image: UploadFile
+  recipes(sort: String, limit: Int, start: Int, where: JSON): [Recipe]
+  recipecategories(sort: String, limit: Int, start: Int, where: JSON): [Recipecategory]
+}
+
+type MenuAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type MenuConnection {
+  values: [Menu]
+  groupBy: MenuGroupBy
+  aggregate: MenuAggregator
+}
+
+type MenuConnection_id {
+  key: ID
+  connection: MenuConnection
+}
+
+type MenuConnectionAirline {
+  key: String
+  connection: MenuConnection
+}
+
+type MenuConnectionCreatedAt {
+  key: DateTime
+  connection: MenuConnection
+}
+
+type MenuConnectionFlightnumber {
+  key: String
+  connection: MenuConnection
+}
+
+type MenuConnectionFlightroute {
+  key: String
+  connection: MenuConnection
+}
+
+type MenuConnectionId {
+  key: ID
+  connection: MenuConnection
+}
+
+type MenuConnectionImage {
+  key: ID
+  connection: MenuConnection
+}
+
+type MenuConnectionTitle {
+  key: String
+  connection: MenuConnection
+}
+
+type MenuConnectionUpdatedAt {
+  key: DateTime
+  connection: MenuConnection
+}
+
+type MenuGroupBy {
+  _id: [MenuConnection_id]
+  id: [MenuConnectionId]
+  createdAt: [MenuConnectionCreatedAt]
+  updatedAt: [MenuConnectionUpdatedAt]
+  title: [MenuConnectionTitle]
+  airline: [MenuConnectionAirline]
+  flightroute: [MenuConnectionFlightroute]
+  flightnumber: [MenuConnectionFlightnumber]
+  image: [MenuConnectionImage]
+}
+
+input MenuInput {
+  title: String!
+  recipes: [ID]
+  airline: String!
+  flightroute: String
+  flightnumber: String
+  recipecategories: [ID]
+  image: ID
+}
+
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Chef | createChefPayload | updateChefPayload | deleteChefPayload | ChefConnection | ChefAggregator | ChefGroupBy | ChefConnection_id | ChefConnectionId | ChefConnectionCreatedAt | ChefConnectionUpdatedAt | ChefConnectionName | ChefConnectionEmail | ChefConnectionBio | ChefConnectionChefpicture | ChefConnectionCountry | ChefConnectionCity | ChefConnectionUser | ChefConnectionContactnumber | Ingredient | createIngredientPayload | updateIngredientPayload | deleteIngredientPayload | IngredientConnection | IngredientAggregator | IngredientAggregatorSum | IngredientAggregatorAvg | IngredientAggregatorMin | IngredientAggregatorMax | IngredientGroupBy | IngredientConnection_id | IngredientConnectionId | IngredientConnectionCreatedAt | IngredientConnectionUpdatedAt | IngredientConnectionTitle | IngredientConnectionCode | IngredientConnectionIcon | IngredientConnectionBuyingUnit | IngredientConnectionPrice | IngredientConnectionCalories | IngredientConnectionConsumptionUnit | IngredientConnectionWasteValue | IngredientConnectionFat | IngredientConnectionCarbs | IngredientConnectionIngredientcategory | Ingredientcategory | createIngredientcategoryPayload | updateIngredientcategoryPayload | deleteIngredientcategoryPayload | IngredientcategoryConnection | IngredientcategoryAggregator | IngredientcategoryGroupBy | IngredientcategoryConnection_id | IngredientcategoryConnectionId | IngredientcategoryConnectionCreatedAt | IngredientcategoryConnectionUpdatedAt | IngredientcategoryConnectionTitle | IngredientcategoryConnectionDescription | IngredientcategoryConnectionImage | Menu | createMenuPayload | updateMenuPayload | deleteMenuPayload | MenuConnection | MenuAggregator | MenuGroupBy | MenuConnection_id | MenuConnectionId | MenuConnectionCreatedAt | MenuConnectionUpdatedAt | MenuConnectionTitle | MenuConnectionAirline | MenuConnectionFlightroute | MenuConnectionFlightnumber | MenuConnectionImage | Recipe | createRecipePayload | updateRecipePayload | deleteRecipePayload | RecipeConnection | RecipeAggregator | RecipeAggregatorSum | RecipeAggregatorAvg | RecipeAggregatorMin | RecipeAggregatorMax | RecipeGroupBy | RecipeConnection_id | RecipeConnectionId | RecipeConnectionCreatedAt | RecipeConnectionUpdatedAt | RecipeConnectionTitle | RecipeConnectionCode | RecipeConnectionCookingtime | RecipeConnectionPreptime | RecipeConnectionServes | RecipeConnectionClass | RecipeConnectionKeywords | RecipeConnectionChef | RecipeConnectionCusine | RecipeConnectionPost_dates | RecipeConnectionRecipeimage | RecipeConnectionPrice | RecipeConnectionDescription | RecipeConnectionStatus | RecipeConnectionPreparationsteps | RecipeConnectionPresentationsteps | RecipeConnectionIngredientlist | RecipeConnectionLikescount | RecipeConnectionSharescount | RecipeConnectionCommentscount | Recipecategory | createRecipecategoryPayload | updateRecipecategoryPayload | deleteRecipecategoryPayload | RecipecategoryConnection | RecipecategoryAggregator | RecipecategoryGroupBy | RecipecategoryConnection_id | RecipecategoryConnectionId | RecipecategoryConnectionCreatedAt | RecipecategoryConnectionUpdatedAt | RecipecategoryConnectionTitle | RecipecategoryConnectionIcon | RecipecategoryConnectionDescription | RecipecategoryConnectionMenu | Recipecomments | createRecipecommentsPayload | updateRecipecommentsPayload | deleteRecipecommentsPayload | RecipecommentsConnection | RecipecommentsAggregator | RecipecommentsGroupBy | RecipecommentsConnection_id | RecipecommentsConnectionId | RecipecommentsConnectionCreatedAt | RecipecommentsConnectionUpdatedAt | RecipecommentsConnectionRecipe | RecipecommentsConnectionCommentedby | RecipecommentsConnectionComment | RecipecommentsConnectionPostdttm | Sharerecipe | createSharerecipePayload | updateSharerecipePayload | deleteSharerecipePayload | SharerecipeConnection | SharerecipeAggregator | SharerecipeGroupBy | SharerecipeConnection_id | SharerecipeConnectionId | SharerecipeConnectionCreatedAt | SharerecipeConnectionUpdatedAt | SharerecipeConnectionComment | SharerecipeConnectionSharedby | SharerecipeConnectionSharedwith | SharerecipeConnectionShareddttm | SharerecipeConnectionRecipe | Unit | createUnitPayload | updateUnitPayload | deleteUnitPayload | UnitConnection | UnitAggregator | UnitGroupBy | UnitConnection_id | UnitConnectionId | UnitConnectionCreatedAt | UnitConnectionUpdatedAt | UnitConnectionTitle | UnitConnectionAbbreviation | UnitConnectionVolume | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionId | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionChef | UsersPermissionsUserConnectionAvatar
+
+type Mutation {
+  createChef(input: createChefInput): createChefPayload
+  updateChef(input: updateChefInput): updateChefPayload
+  deleteChef(input: deleteChefInput): deleteChefPayload
+  createIngredient(input: createIngredientInput): createIngredientPayload
+  updateIngredient(input: updateIngredientInput): updateIngredientPayload
+  deleteIngredient(input: deleteIngredientInput): deleteIngredientPayload
+  createIngredientcategory(input: createIngredientcategoryInput): createIngredientcategoryPayload
+  updateIngredientcategory(input: updateIngredientcategoryInput): updateIngredientcategoryPayload
+  deleteIngredientcategory(input: deleteIngredientcategoryInput): deleteIngredientcategoryPayload
+  createMenu(input: createMenuInput): createMenuPayload
+  updateMenu(input: updateMenuInput): updateMenuPayload
+  deleteMenu(input: deleteMenuInput): deleteMenuPayload
+  createRecipe(input: createRecipeInput): createRecipePayload
+  updateRecipe(input: updateRecipeInput): updateRecipePayload
+  deleteRecipe(input: deleteRecipeInput): deleteRecipePayload
+  createRecipecategory(input: createRecipecategoryInput): createRecipecategoryPayload
+  updateRecipecategory(input: updateRecipecategoryInput): updateRecipecategoryPayload
+  deleteRecipecategory(input: deleteRecipecategoryInput): deleteRecipecategoryPayload
+  createRecipecomments(input: createRecipecommentsInput): createRecipecommentsPayload
+  updateRecipecomments(input: updateRecipecommentsInput): updateRecipecommentsPayload
+  deleteRecipecomments(input: deleteRecipecommentsInput): deleteRecipecommentsPayload
+  createSharerecipe(input: createSharerecipeInput): createSharerecipePayload
+  updateSharerecipe(input: updateSharerecipeInput): updateSharerecipePayload
+  deleteSharerecipe(input: deleteSharerecipeInput): deleteSharerecipePayload
+  createUnit(input: createUnitInput): createUnitPayload
+  updateUnit(input: updateUnitInput): updateUnitPayload
+  deleteUnit(input: deleteUnitInput): deleteUnitPayload
+
+  """Create a new role"""
+  createRole(input: createRoleInput): createRolePayload
+
+  """Update an existing role"""
+  updateRole(input: updateRoleInput): updateRolePayload
+
+  """Delete an existing role"""
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+
+  """Create a new user"""
+  createUser(input: createUserInput): createUserPayload
+
+  """Update an existing user"""
+  updateUser(input: updateUserInput): updateUserPayload
+
+  """Delete an existing user"""
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  upload(refId: ID, ref: String, source: String, file: Upload!): UploadFile!
+}
+
+type Query {
+  chef(id: ID!): Chef
+  chefs(sort: String, limit: Int, start: Int, where: JSON): [Chef]
+  chefsConnection(sort: String, limit: Int, start: Int, where: JSON): ChefConnection
+  ingredient(id: ID!): Ingredient
+  ingredients(sort: String, limit: Int, start: Int, where: JSON): [Ingredient]
+  ingredientsConnection(sort: String, limit: Int, start: Int, where: JSON): IngredientConnection
+  ingredientcategory(id: ID!): Ingredientcategory
+  ingredientcategories(sort: String, limit: Int, start: Int, where: JSON): [Ingredientcategory]
+  ingredientcategoriesConnection(sort: String, limit: Int, start: Int, where: JSON): IngredientcategoryConnection
+  menu(id: ID!): Menu
+  menus(sort: String, limit: Int, start: Int, where: JSON): [Menu]
+  menusConnection(sort: String, limit: Int, start: Int, where: JSON): MenuConnection
+  recipe(id: ID!): Recipe
+  recipes(sort: String, limit: Int, start: Int, where: JSON): [Recipe]
+  recipesConnection(sort: String, limit: Int, start: Int, where: JSON): RecipeConnection
+  recipecategory(id: ID!): Recipecategory
+  recipecategories(sort: String, limit: Int, start: Int, where: JSON): [Recipecategory]
+  recipecategoriesConnection(sort: String, limit: Int, start: Int, where: JSON): RecipecategoryConnection
+  recipecomment(id: ID!): Recipecomments
+  recipecomments(sort: String, limit: Int, start: Int, where: JSON): [Recipecomments]
+  recipecommentsConnection(sort: String, limit: Int, start: Int, where: JSON): RecipecommentsConnection
+  sharerecipe(id: ID!): Sharerecipe
+  sharerecipes(sort: String, limit: Int, start: Int, where: JSON): [Sharerecipe]
+  sharerecipesConnection(sort: String, limit: Int, start: Int, where: JSON): SharerecipeConnection
+  unit(id: ID!): Unit
+  units(sort: String, limit: Int, start: Int, where: JSON): [Unit]
+  unitsConnection(sort: String, limit: Int, start: Int, where: JSON): UnitConnection
+  files(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
+  role(id: ID!): UsersPermissionsRole
+
+  """
+  Retrieve all the existing roles. You can't apply filters on this query.
+  """
+  roles(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsRole]
+  rolesConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsRoleConnection
+  user(id: ID!): UsersPermissionsUser
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+  usersConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsUserConnection
+  me: UsersPermissionsMe
+}
+
+"""recipe bank"""
+type Recipe {
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String
+  code: String
+  cookingtime: String
+  preptime: String
+  serves: String
+  class: String
+  keywords: String
+  chef: Chef
+  cusine: String
+  post_dates: DateTime
+  recipeimage: UploadFile
+  Price: Float
+  description: String
+  status: ENUM_RECIPE_STATUS!
+  preparationsteps: String
+  presentationsteps: String
+  ingredientlist: JSON!
+  likescount: Int
+  sharescount: Int
+  commentscount: Int
+  ingredients(sort: String, limit: Int, start: Int, where: JSON): [Ingredient]
+  recipecategories(sort: String, limit: Int, start: Int, where: JSON): [Recipecategory]
+  menus(sort: String, limit: Int, start: Int, where: JSON): [Menu]
+  likedbychefs(sort: String, limit: Int, start: Int, where: JSON): [Chef]
+  recipecomments(sort: String, limit: Int, start: Int, where: JSON): [Recipecomments]
+  sharerecipes(sort: String, limit: Int, start: Int, where: JSON): [Sharerecipe]
+}
+
+type RecipeAggregator {
+  count: Int
+  totalCount: Int
+  sum: RecipeAggregatorSum
+  avg: RecipeAggregatorAvg
+  min: RecipeAggregatorMin
+  max: RecipeAggregatorMax
+}
+
+type RecipeAggregatorAvg {
+  Price: Float
+  likescount: Float
+  sharescount: Float
+  commentscount: Float
+}
+
+type RecipeAggregatorMax {
+  Price: Float
+  likescount: Float
+  sharescount: Float
+  commentscount: Float
+}
+
+type RecipeAggregatorMin {
+  Price: Float
+  likescount: Float
+  sharescount: Float
+  commentscount: Float
+}
+
+type RecipeAggregatorSum {
+  Price: Float
+  likescount: Float
+  sharescount: Float
+  commentscount: Float
+}
+
+type Recipecategory {
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String!
+  icon: UploadFile
+  description: String
+  menu: Menu
+  recipes(sort: String, limit: Int, start: Int, where: JSON): [Recipe]
+}
+
+type RecipecategoryAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type RecipecategoryConnection {
+  values: [Recipecategory]
+  groupBy: RecipecategoryGroupBy
+  aggregate: RecipecategoryAggregator
+}
+
+type RecipecategoryConnection_id {
+  key: ID
+  connection: RecipecategoryConnection
+}
+
+type RecipecategoryConnectionCreatedAt {
+  key: DateTime
+  connection: RecipecategoryConnection
+}
+
+type RecipecategoryConnectionDescription {
+  key: String
+  connection: RecipecategoryConnection
+}
+
+type RecipecategoryConnectionIcon {
+  key: ID
+  connection: RecipecategoryConnection
+}
+
+type RecipecategoryConnectionId {
+  key: ID
+  connection: RecipecategoryConnection
+}
+
+type RecipecategoryConnectionMenu {
+  key: ID
+  connection: RecipecategoryConnection
+}
+
+type RecipecategoryConnectionTitle {
+  key: String
+  connection: RecipecategoryConnection
+}
+
+type RecipecategoryConnectionUpdatedAt {
+  key: DateTime
+  connection: RecipecategoryConnection
+}
+
+type RecipecategoryGroupBy {
+  _id: [RecipecategoryConnection_id]
+  id: [RecipecategoryConnectionId]
+  createdAt: [RecipecategoryConnectionCreatedAt]
+  updatedAt: [RecipecategoryConnectionUpdatedAt]
+  title: [RecipecategoryConnectionTitle]
+  icon: [RecipecategoryConnectionIcon]
+  description: [RecipecategoryConnectionDescription]
+  menu: [RecipecategoryConnectionMenu]
+}
+
+input RecipecategoryInput {
+  title: String!
+  recipes: [ID]
+  icon: ID
+  description: String
+  menu: ID
+}
+
+type Recipecomments {
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  recipe: Recipe
+  commentedby: Chef
+  comment: String!
+  postdttm: DateTime
+}
+
+type RecipecommentsAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type RecipecommentsConnection {
+  values: [Recipecomments]
+  groupBy: RecipecommentsGroupBy
+  aggregate: RecipecommentsAggregator
+}
+
+type RecipecommentsConnection_id {
+  key: ID
+  connection: RecipecommentsConnection
+}
+
+type RecipecommentsConnectionComment {
+  key: String
+  connection: RecipecommentsConnection
+}
+
+type RecipecommentsConnectionCommentedby {
+  key: ID
+  connection: RecipecommentsConnection
+}
+
+type RecipecommentsConnectionCreatedAt {
+  key: DateTime
+  connection: RecipecommentsConnection
+}
+
+type RecipecommentsConnectionId {
+  key: ID
+  connection: RecipecommentsConnection
+}
+
+type RecipecommentsConnectionPostdttm {
+  key: DateTime
+  connection: RecipecommentsConnection
+}
+
+type RecipecommentsConnectionRecipe {
+  key: ID
+  connection: RecipecommentsConnection
+}
+
+type RecipecommentsConnectionUpdatedAt {
+  key: DateTime
+  connection: RecipecommentsConnection
+}
+
+type RecipecommentsGroupBy {
+  _id: [RecipecommentsConnection_id]
+  id: [RecipecommentsConnectionId]
+  createdAt: [RecipecommentsConnectionCreatedAt]
+  updatedAt: [RecipecommentsConnectionUpdatedAt]
+  recipe: [RecipecommentsConnectionRecipe]
+  commentedby: [RecipecommentsConnectionCommentedby]
+  comment: [RecipecommentsConnectionComment]
+  postdttm: [RecipecommentsConnectionPostdttm]
+}
+
+input RecipecommentsInput {
+  recipe: ID
+  commentedby: ID
+  comment: String!
+  postdttm: DateTime
+}
+
+type RecipeConnection {
+  values: [Recipe]
+  groupBy: RecipeGroupBy
+  aggregate: RecipeAggregator
+}
+
+type RecipeConnection_id {
+  key: ID
+  connection: RecipeConnection
+}
+
+type RecipeConnectionChef {
+  key: ID
+  connection: RecipeConnection
+}
+
+type RecipeConnectionClass {
+  key: String
+  connection: RecipeConnection
+}
+
+type RecipeConnectionCode {
+  key: String
+  connection: RecipeConnection
+}
+
+type RecipeConnectionCommentscount {
+  key: Int
+  connection: RecipeConnection
+}
+
+type RecipeConnectionCookingtime {
+  key: String
+  connection: RecipeConnection
+}
+
+type RecipeConnectionCreatedAt {
+  key: DateTime
+  connection: RecipeConnection
+}
+
+type RecipeConnectionCusine {
+  key: String
+  connection: RecipeConnection
+}
+
+type RecipeConnectionDescription {
+  key: String
+  connection: RecipeConnection
+}
+
+type RecipeConnectionId {
+  key: ID
+  connection: RecipeConnection
+}
+
+type RecipeConnectionIngredientlist {
+  key: JSON
+  connection: RecipeConnection
+}
+
+type RecipeConnectionKeywords {
+  key: String
+  connection: RecipeConnection
+}
+
+type RecipeConnectionLikescount {
+  key: Int
+  connection: RecipeConnection
+}
+
+type RecipeConnectionPost_dates {
+  key: DateTime
+  connection: RecipeConnection
+}
+
+type RecipeConnectionPreparationsteps {
+  key: String
+  connection: RecipeConnection
+}
+
+type RecipeConnectionPreptime {
+  key: String
+  connection: RecipeConnection
+}
+
+type RecipeConnectionPresentationsteps {
+  key: String
+  connection: RecipeConnection
+}
+
+type RecipeConnectionPrice {
+  key: Float
+  connection: RecipeConnection
+}
+
+type RecipeConnectionRecipeimage {
+  key: ID
+  connection: RecipeConnection
+}
+
+type RecipeConnectionServes {
+  key: String
+  connection: RecipeConnection
+}
+
+type RecipeConnectionSharescount {
+  key: Int
+  connection: RecipeConnection
+}
+
+type RecipeConnectionStatus {
+  key: String
+  connection: RecipeConnection
+}
+
+type RecipeConnectionTitle {
+  key: String
+  connection: RecipeConnection
+}
+
+type RecipeConnectionUpdatedAt {
+  key: DateTime
+  connection: RecipeConnection
+}
+
+type RecipeGroupBy {
+  _id: [RecipeConnection_id]
+  id: [RecipeConnectionId]
+  createdAt: [RecipeConnectionCreatedAt]
+  updatedAt: [RecipeConnectionUpdatedAt]
+  title: [RecipeConnectionTitle]
+  code: [RecipeConnectionCode]
+  cookingtime: [RecipeConnectionCookingtime]
+  preptime: [RecipeConnectionPreptime]
+  serves: [RecipeConnectionServes]
+  class: [RecipeConnectionClass]
+  keywords: [RecipeConnectionKeywords]
+  chef: [RecipeConnectionChef]
+  cusine: [RecipeConnectionCusine]
+  post_dates: [RecipeConnectionPost_dates]
+  recipeimage: [RecipeConnectionRecipeimage]
+  Price: [RecipeConnectionPrice]
+  description: [RecipeConnectionDescription]
+  status: [RecipeConnectionStatus]
+  preparationsteps: [RecipeConnectionPreparationsteps]
+  presentationsteps: [RecipeConnectionPresentationsteps]
+  ingredientlist: [RecipeConnectionIngredientlist]
+  likescount: [RecipeConnectionLikescount]
+  sharescount: [RecipeConnectionSharescount]
+  commentscount: [RecipeConnectionCommentscount]
+}
+
+input RecipeInput {
+  title: String
+  code: String
+  cookingtime: String
+  preptime: String
+  serves: String
+  class: String
+  keywords: String
+  chef: ID
+  ingredients: [ID]
+  cusine: String
+  post_dates: DateTime
+  recipeimage: ID
+  Price: Float
+  description: String
+  recipecategories: [ID]
+  menus: [ID]
+  status: ENUM_RECIPE_STATUS!
+  preparationsteps: String
+  presentationsteps: String
+  ingredientlist: JSON!
+  likedbychefs: [ID]
+  likescount: Int
+  sharescount: Int
+  recipecomments: [ID]
+  commentscount: Int
+  sharerecipes: [ID]
+}
+
+input RoleInput {
+  name: String!
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+}
+
+type Sharerecipe {
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  comment: String
+  sharedby: Chef
+  sharedwith: Chef
+  shareddttm: DateTime
+  recipe: Recipe
+}
+
+type SharerecipeAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type SharerecipeConnection {
+  values: [Sharerecipe]
+  groupBy: SharerecipeGroupBy
+  aggregate: SharerecipeAggregator
+}
+
+type SharerecipeConnection_id {
+  key: ID
+  connection: SharerecipeConnection
+}
+
+type SharerecipeConnectionComment {
+  key: String
+  connection: SharerecipeConnection
+}
+
+type SharerecipeConnectionCreatedAt {
+  key: DateTime
+  connection: SharerecipeConnection
+}
+
+type SharerecipeConnectionId {
+  key: ID
+  connection: SharerecipeConnection
+}
+
+type SharerecipeConnectionRecipe {
+  key: ID
+  connection: SharerecipeConnection
+}
+
+type SharerecipeConnectionSharedby {
+  key: ID
+  connection: SharerecipeConnection
+}
+
+type SharerecipeConnectionShareddttm {
+  key: DateTime
+  connection: SharerecipeConnection
+}
+
+type SharerecipeConnectionSharedwith {
+  key: ID
+  connection: SharerecipeConnection
+}
+
+type SharerecipeConnectionUpdatedAt {
+  key: DateTime
+  connection: SharerecipeConnection
+}
+
+type SharerecipeGroupBy {
+  _id: [SharerecipeConnection_id]
+  id: [SharerecipeConnectionId]
+  createdAt: [SharerecipeConnectionCreatedAt]
+  updatedAt: [SharerecipeConnectionUpdatedAt]
+  comment: [SharerecipeConnectionComment]
+  sharedby: [SharerecipeConnectionSharedby]
+  sharedwith: [SharerecipeConnectionSharedwith]
+  shareddttm: [SharerecipeConnectionShareddttm]
+  recipe: [SharerecipeConnectionRecipe]
+}
+
+input SharerecipeInput {
+  comment: String
+  sharedby: ID
+  sharedwith: ID
+  shareddttm: DateTime
+  recipe: ID
+}
+
+type Unit {
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  Title: String
+  Abbreviation: String
+  Volume: String
+}
+
+type UnitAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UnitConnection {
+  values: [Unit]
+  groupBy: UnitGroupBy
+  aggregate: UnitAggregator
+}
+
+type UnitConnection_id {
+  key: ID
+  connection: UnitConnection
+}
+
+type UnitConnectionAbbreviation {
+  key: String
+  connection: UnitConnection
+}
+
+type UnitConnectionCreatedAt {
+  key: DateTime
+  connection: UnitConnection
+}
+
+type UnitConnectionId {
+  key: ID
+  connection: UnitConnection
+}
+
+type UnitConnectionTitle {
+  key: String
+  connection: UnitConnection
+}
+
+type UnitConnectionUpdatedAt {
+  key: DateTime
+  connection: UnitConnection
+}
+
+type UnitConnectionVolume {
+  key: String
+  connection: UnitConnection
+}
+
+type UnitGroupBy {
+  _id: [UnitConnection_id]
+  id: [UnitConnectionId]
+  createdAt: [UnitConnectionCreatedAt]
+  updatedAt: [UnitConnectionUpdatedAt]
+  Title: [UnitConnectionTitle]
+  Abbreviation: [UnitConnectionAbbreviation]
+  Volume: [UnitConnectionVolume]
+}
+
+input UnitInput {
+  Title: String
+  Abbreviation: String
+  Volume: String
+}
+
+input updateChefInput {
+  where: InputID
+  data: editChefInput
+}
+
+type updateChefPayload {
+  chef: Chef
+}
+
+input updateIngredientcategoryInput {
+  where: InputID
+  data: editIngredientcategoryInput
+}
+
+type updateIngredientcategoryPayload {
+  ingredientcategory: Ingredientcategory
+}
+
+input updateIngredientInput {
+  where: InputID
+  data: editIngredientInput
+}
+
+type updateIngredientPayload {
+  ingredient: Ingredient
+}
+
+input updateMenuInput {
+  where: InputID
+  data: editMenuInput
+}
+
+type updateMenuPayload {
+  menu: Menu
+}
+
+input updateRecipecategoryInput {
+  where: InputID
+  data: editRecipecategoryInput
+}
+
+type updateRecipecategoryPayload {
+  recipecategory: Recipecategory
+}
+
+input updateRecipecommentsInput {
+  where: InputID
+  data: editRecipecommentsInput
+}
+
+type updateRecipecommentsPayload {
+  recipecomment: Recipecomments
+}
+
+input updateRecipeInput {
+  where: InputID
+  data: editRecipeInput
+}
+
+type updateRecipePayload {
+  recipe: Recipe
+}
+
+input updateRoleInput {
+  where: InputID
+  data: editRoleInput
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+input updateSharerecipeInput {
+  where: InputID
+  data: editSharerecipeInput
+}
+
+type updateSharerecipePayload {
+  sharerecipe: Sharerecipe
+}
+
+input updateUnitInput {
+  where: InputID
+  data: editUnitInput
+}
+
+type updateUnitPayload {
+  unit: Unit
+}
+
+input updateUserInput {
+  where: InputID
+  data: editUserInput
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type UploadFile {
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  hash: String!
+  sha256: String
+  ext: String
+  mime: String!
+  size: String!
+  url: String!
+  provider: String!
+  public_id: String
+  related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
+}
+
+type UploadFileAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UploadFileConnection {
+  values: [UploadFile]
+  groupBy: UploadFileGroupBy
+  aggregate: UploadFileAggregator
+}
+
+type UploadFileConnection_id {
+  key: ID
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCreatedAt {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionExt {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHash {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionId {
+  key: ID
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionMime {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionName {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionPublic_id {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionSha256 {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionSize {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUpdatedAt {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileGroupBy {
+  _id: [UploadFileConnection_id]
+  id: [UploadFileConnectionId]
+  createdAt: [UploadFileConnectionCreatedAt]
+  updatedAt: [UploadFileConnectionUpdatedAt]
+  name: [UploadFileConnectionName]
+  hash: [UploadFileConnectionHash]
+  sha256: [UploadFileConnectionSha256]
+  ext: [UploadFileConnectionExt]
+  mime: [UploadFileConnectionMime]
+  size: [UploadFileConnectionSize]
+  url: [UploadFileConnectionUrl]
+  provider: [UploadFileConnectionProvider]
+  public_id: [UploadFileConnectionPublic_id]
+}
+
+input UserInput {
+  username: String!
+  email: String!
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  chef: ID
+  avatar: ID
+}
+
+type UsersPermissionsMe {
+  _id: ID!
+  username: String!
+  email: String!
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsMeRole
+}
+
+type UsersPermissionsMeRole {
+  _id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
+type UsersPermissionsPermission {
+  _id: ID!
+  id: ID!
+  type: String!
+  controller: String!
+  action: String!
+  enabled: Boolean!
+  policy: String
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsRole {
+  _id: ID!
+  id: ID!
+  name: String!
+  description: String
+  type: String
+  permissions(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsPermission]
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type UsersPermissionsRoleAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsRoleConnection {
+  values: [UsersPermissionsRole]
+  groupBy: UsersPermissionsRoleGroupBy
+  aggregate: UsersPermissionsRoleAggregator
+}
+
+type UsersPermissionsRoleConnection_id {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionDescription {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionId {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionName {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionType {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleGroupBy {
+  _id: [UsersPermissionsRoleConnection_id]
+  id: [UsersPermissionsRoleConnectionId]
+  name: [UsersPermissionsRoleConnectionName]
+  description: [UsersPermissionsRoleConnectionDescription]
+  type: [UsersPermissionsRoleConnectionType]
+}
+
+type UsersPermissionsUser {
+  _id: ID!
+  id: ID!
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsRole
+  chef: Chef
+  avatar: UploadFile
+}
+
+type UsersPermissionsUserAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsUserConnection {
+  values: [UsersPermissionsUser]
+  groupBy: UsersPermissionsUserGroupBy
+  aggregate: UsersPermissionsUserAggregator
+}
+
+type UsersPermissionsUserConnection_id {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionAvatar {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionBlocked {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionChef {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionConfirmed {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionEmail {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionId {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionProvider {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionRole {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUsername {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserGroupBy {
+  _id: [UsersPermissionsUserConnection_id]
+  id: [UsersPermissionsUserConnectionId]
+  username: [UsersPermissionsUserConnectionUsername]
+  email: [UsersPermissionsUserConnectionEmail]
+  provider: [UsersPermissionsUserConnectionProvider]
+  confirmed: [UsersPermissionsUserConnectionConfirmed]
+  blocked: [UsersPermissionsUserConnectionBlocked]
+  role: [UsersPermissionsUserConnectionRole]
+  chef: [UsersPermissionsUserConnectionChef]
+  avatar: [UsersPermissionsUserConnectionAvatar]
+}

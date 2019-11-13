@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/recipecomments",
+      "handler": "Recipecomments.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/recipecomments/count",
+      "handler": "Recipecomments.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/recipecomments/:_id",
+      "handler": "Recipecomments.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/recipecomments",
+      "handler": "Recipecomments.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/recipecomments/:_id",
+      "handler": "Recipecomments.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/recipecomments/:_id",
+      "handler": "Recipecomments.destroy",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/sharerecipes",
+      "handler": "Sharerecipe.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/sharerecipes/count",
+      "handler": "Sharerecipe.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/sharerecipes/:_id",
+      "handler": "Sharerecipe.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/sharerecipes",
+      "handler": "Sharerecipe.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/sharerecipes/:_id",
+      "handler": "Sharerecipe.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/sharerecipes/:_id",
+      "handler": "Sharerecipe.destroy",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

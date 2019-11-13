@@ -1,0 +1,41 @@
+{
+  "connection": "default",
+  "collectionName": "menu",
+  "info": {
+    "name": "menu",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "required": true,
+      "type": "string"
+    },
+    "recipes": {
+      "collection": "recipe",
+      "via": "menus",
+      "dominant": true
+    },
+    "airline": {
+      "required": true,
+      "type": "string"
+    },
+    "flightroute": {
+      "type": "string"
+    },
+    "flightnumber": {
+      "type": "string"
+    },
+    "recipecategories": {
+      "collection": "recipecategory",
+      "via": "menu"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "connection": "default",
+  "collectionName": "sharerecipe",
+  "info": {
+    "name": "sharerecipe",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "comment": {
+      "type": "text"
+    },
+    "sharedby": {
+      "model": "chef",
+      "via": "sharedbyrecipes"
+    },
+    "sharedwith": {
+      "model": "chef",
+      "via": "sharedwithrecipes"
+    },
+    "shareddttm": {
+      "type": "date"
+    },
+    "recipe": {
+      "model": "recipe",
+      "via": "sharerecipes"
+    }
+  }
+}

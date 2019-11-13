@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/recipecategories",
+      "handler": "Recipecategory.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/recipecategories/count",
+      "handler": "Recipecategory.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/recipecategories/:_id",
+      "handler": "Recipecategory.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/recipecategories",
+      "handler": "Recipecategory.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/recipecategories/:_id",
+      "handler": "Recipecategory.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/recipecategories/:_id",
+      "handler": "Recipecategory.destroy",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

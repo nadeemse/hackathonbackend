@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/ingredientcategories",
+      "handler": "Ingredientcategory.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/ingredientcategories/count",
+      "handler": "Ingredientcategory.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/ingredientcategories/:_id",
+      "handler": "Ingredientcategory.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/ingredientcategories",
+      "handler": "Ingredientcategory.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/ingredientcategories/:_id",
+      "handler": "Ingredientcategory.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/ingredientcategories/:_id",
+      "handler": "Ingredientcategory.destroy",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

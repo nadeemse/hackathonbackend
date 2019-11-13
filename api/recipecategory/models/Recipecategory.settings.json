@@ -1,0 +1,35 @@
+{
+  "connection": "default",
+  "collectionName": "recipecategory",
+  "info": {
+    "name": "recipecategory",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "required": true,
+      "unique": true,
+      "type": "string"
+    },
+    "recipes": {
+      "collection": "recipe",
+      "dominant": true,
+      "via": "recipecategories"
+    },
+    "icon": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "description": {
+      "type": "text"
+    },
+    "menu": {
+      "model": "menu",
+      "via": "recipecategories"
+    }
+  }
+}

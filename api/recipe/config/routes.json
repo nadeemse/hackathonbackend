@@ -1,0 +1,76 @@
+{
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/recipes/:_id/likes",
+      "handler": "Recipe.like",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/recipesapi/getMostLikedRecipes",
+      "handler": "Recipe.getMostLikedRecipes",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/exporttoneo4jdb",
+      "handler": "Recipe.exporttoneo4jdb",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/recipes",
+      "handler": "Recipe.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/recipes/count",
+      "handler": "Recipe.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/recipes/:_id",
+      "handler": "Recipe.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/recipes",
+      "handler": "Recipe.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/recipes/:_id",
+      "handler": "Recipe.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/recipes/:_id",
+      "handler": "Recipe.destroy",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

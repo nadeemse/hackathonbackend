@@ -1,0 +1,61 @@
+{
+  "connection": "default",
+  "collectionName": "chef",
+  "info": {
+    "name": "chef",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "bio": {
+      "type": "text"
+    },
+    "chefpicture": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "country": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "user": {
+      "model": "user",
+      "via": "chef",
+      "plugin": "users-permissions"
+    },
+    "myrecipes": {
+      "collection": "recipe",
+      "via": "chef"
+    },
+    "contactnumber": {
+      "type": "string"
+    },
+    "recipes": {
+      "collection": "recipe",
+      "via": "likedbychefs"
+    },
+    "recipecomments": {
+      "collection": "recipecomments",
+      "via": "commentedby"
+    },
+    "sharedbyrecipes": {
+      "collection": "sharerecipe",
+      "via": "sharedby"
+    },
+    "sharedwithrecipes": {
+      "collection": "sharerecipe",
+      "via": "sharedwith"
+    }
+  }
+}
